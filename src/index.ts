@@ -9,7 +9,7 @@ type TS = typeof import('typescript')
 
 async function main() {
   try {
-    const project = getInput('project') || 'projectFixtures/simple/tsconfig.json'
+    const project = getInput('project') || 'tsconfig.json'
 
     const projectPath = resolveProjectPath(path.resolve(process.cwd(), project))
 
