@@ -1,7 +1,7 @@
 import Module from 'module'
 import * as path from 'path'
 import * as fs from 'fs'
-import { getInput, setFailed } from '@actions/core'
+import { getInput, setFailed,setOutput } from '@actions/core'
 import { reporter, uploader } from './reporter'
 import { CompilerOptions, Diagnostic, ParsedCommandLine } from "typescript"
 
@@ -9,7 +9,7 @@ type TS = typeof import('typescript')
 
 async function main() {
   try {
-    const project = getInput('project') || 'tsconfig.json'
+    const project = getInput('project') || 'projectFixtures/simple/tsconfig.json'
 
     const projectPath = resolveProjectPath(path.resolve(process.cwd(), project))
 
@@ -57,11 +57,13 @@ const typecheck = (projectPath:string) => {
 
   
   const errThreshold = Number(getInput('error_fail_threshold') || 0)
+
   const logString = `Found ${errors} errors!`
   console.log(logString)
   if (errors > errThreshold) {
     setFailed(logString)
   }
+  setOutput('type_errors',errors)
 }
 
 
