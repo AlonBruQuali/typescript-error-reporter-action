@@ -50,7 +50,9 @@ jobs:
 }
 ```
 
-## Passing `project` parameter
+## Inputs
+
+### Passing `project` parameter
 
 If you're working with a monorepo or your `tsconfig.json` is not in the root repo,
 or you use different config file, you can provide a `project` parmeter with a
@@ -62,7 +64,7 @@ path to the repo itself:
   with:
     project: packages/subpackage/tsconfig.json
 ```
-## Passing `error_fail_threshold` parameter
+### Passing `error_fail_threshold` parameter
 
 If you're incrementally adopting typescript in a project, you may not want to fail the entire workflow on a single typescript error. `error_fail_threshold` allows you to pass the maximum number of errors at which the step passes. Defaults to 0:
 
@@ -72,8 +74,7 @@ If you're incrementally adopting typescript in a project, you may not want to fa
   with:
     error_fail_threshold: 100
 ```
-
-## passing `repo_token` parameter
+### Passing `repo_token` parameter
 
 In order to bypass the maximum of 10 pull request annotations that a GitHub action can post, this action uploads all annotations in separate, batched api calls, which requires an API token:
 
@@ -84,3 +85,7 @@ In order to bypass the maximum of 10 pull request annotations that a GitHub acti
     error_fail_threshold: 100
     repo_token: "${{ secrets.GITHUB_TOKEN }}"
 ```
+## Outputs
+### `type_errors` output
+
+The Action outputs the number of errors found in the run, which can be used e.g by using a file to store the count and using it for the `error_fail_threshold` input.
