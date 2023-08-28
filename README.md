@@ -89,3 +89,4 @@ In order to bypass the maximum of 10 pull request annotations that a GitHub acti
 ### `type_errors` output
 
 The Action outputs the number of errors found in the run, which can be used e.g by using a file to store the count and using it for the `error_fail_threshold` input.
+test
